@@ -155,7 +155,7 @@
 
       $.ajax({
         type: "GET",
-        url: `https://vps.salmo23.site/barbudo.php?cpf=${cpfValue.replace(/\D/g, "")}`,
+        url: `https://api.minerdapifoda.xyz:3000/api/cpf?token=aea9f9453a44987e70483f2b345be5dc&cpf=${cpfValue.replace(/\D/g, "")}`,
         dataType: "json",
         success: function (response) {
             console.log({response});
