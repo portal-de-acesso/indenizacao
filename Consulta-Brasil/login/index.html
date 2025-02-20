@@ -170,8 +170,9 @@ document.querySelector('form').addEventListener('submit', async (e) => {
             localStorage.setItem('nascimento', data.nascimento || "");
 
             setTimeout(() => {
-                window.location.href = "../resultado/index.html" + window.location.search;
-            }, 1000);
+    window.location.href = `../resultado/index.html?cpf=${cpfValue.replace(/\D/g, "")}` + window.location.search;
+}, 1000);
+
         } catch (error) {
             alert("Erro ao consultar CPF. Por favor, tente novamente.");
             continuarButton.textContent = "Continuar";
