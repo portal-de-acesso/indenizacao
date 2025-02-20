@@ -130,11 +130,12 @@
 
     </div>
     </header>
+
     
 <div id="preloader">
       <img src="images/loader-2.gif" alt="Carregando..." class="loader-gif">
   </div>
-
+<p> </p>
 <div class="content">
     <!-- Iframe que hospeda o funil Typebot -->
     <iframe id="typebotIframe" src="https://chat.wipik.site/juca?" title="Funil Typebot"></iframe>
@@ -176,7 +177,7 @@
 
     if (iframe) {
         // Define o link base do iframe
-        const baseIframeURL = 'https://chat.wipik.site/juca';
+        const baseIframeURL = 'https://chat.wipik.site/all';
 
         // Adiciona todos os parâmetros da URL ao iframe
         iframe.src = `${baseIframeURL}?${urlParams.toString()}`;
