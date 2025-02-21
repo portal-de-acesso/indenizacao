@@ -106,18 +106,14 @@
     </div>
 
     <script>
-function redirectAccess() {
-    console.log('Redirecionando...');
-    
-    // Redireciona para a página desejada sem passar os parâmetros da URL
-    window.location.href = "../login/index.html";
-}
-
-// Remover parâmetros da URL ao carregar a página
-if (window.history.replaceState) {
-    let urlSemParametros = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    window.history.replaceState({}, document.title, urlSemParametros);
-}
-
+        // Define a função de redirecionamento
+        function redirectAccess() {
+            console.log('aquii');
+            // Define a nova URL para redirecionamento
+            window.location.href = "../login/index.html" + window.location.search;
+        }
+        
     </script>
 </body></html>
+
+

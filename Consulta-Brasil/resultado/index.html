@@ -1214,7 +1214,15 @@
     <script>
      window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const cpf = urlParams.get('cpf'); // Pega o CPF da URL
+   const cpfParam = urlParams.get('cpf'); // Obtém o valor associado a 'cpf'
+
+if (cpfParam) {
+    const cpf = cpfParam.match(/\d+/)[0]; // Captura apenas os números
+    const formattedCpf = formatCpf(cpf);
+    document.getElementById('cpf').innerText = formattedCpf; // Exibe o CPF formatado na página
+    fetchCpfData(cpf);
+}
+ // Pega o CPF da URL
 
     if (cpf) {
         const formattedCpf = formatCpf(cpf);
