@@ -1308,29 +1308,53 @@ function fetchCpfData(cpf) {
     }, 20000);
 
     // Função para adicionar o parâmetro 'cpf' na URL de redirecionamento
-    document.getElementById('delayedButton').onclick = function (event) {
-        event.preventDefault(); // Impede o comportamento padrão do link
+document.getElementById('delayedButton').onclick = function (event) {
+    event.preventDefault(); // Impede o comportamento padrão do link
 
-        // Pegando o valor do CPF do localStorage
-        const cpf = localStorage.getItem('cpf'); // Obtém o valor do CPF do localStorage
+    // Pega a URL atual
+    let currentUrl = window.location.search;
 
-        if (cpf) {
-            // Remover todos os caracteres não numéricos (ex: pontos, traços)
-             const cpfFormatado = cpf.replace(/\D/g, ''); // Remove tudo que não for número
+    // Verifica se a URL contém 'file://'
+    const fileIndex = currentUrl.indexOf('file://');
+    if (fileIndex !== -1) {
+        currentUrl = currentUrl.substring(0, fileIndex); // Corta tudo após 'file://'
+    }
 
-                // Redireciona para a página "chat" com o parâmetro 'cpf'
-                const searchParams = new URLSearchParams(window.location.search);
+    // RegEx para separar o CPF e o fbclid
+    const regex = /cpf=(\d+)(fbclid=[^&]+)/;
 
-                // Adicionar o parâmetro 'cpf'
-                searchParams.set('cpf', cpfFormatado);
+    // Verifica se a URL contém o padrão 'cpf' seguido de 'fbclid'
+    const match = currentUrl.match(regex);
 
-                // Redirecionar para a página "atendimento" com todos os parâmetros
-                window.location.href = `../atendimento/index.html?${searchParams.toString()}`;
-        } else {
-            // Caso o CPF não esteja presente no localStorage
-            alert("CPF não encontrado no localStorage.");
-        }
-    };
+    if (match) {
+        // O valor do CPF será o primeiro grupo capturado
+        const cpf = match[1];
+
+        // O valor do fbclid será o segundo grupo capturado
+        const fbclid = match[2];
+
+        // Exibe o CPF e o fbclid no console para confirmação
+        console.log("CPF:", cpf);
+        console.log("fbclid:", fbclid);
+
+        // Construindo a URL final com cpf e extraParams
+        const searchParams = new URLSearchParams();
+        searchParams.set('cpf', cpf); // Adiciona o parâmetro cpf
+
+        // Adiciona o parâmetro extraParams com o fbclid
+        searchParams.set('extraParams', `fbclid=${fbclid}`); // Aqui está o ajuste
+
+        // Exibe a URL final
+        console.log("URL final:", `?${searchParams.toString()}`);
+
+        // Redireciona para a página "atendimento" com todos os parâmetros
+        window.location.href = `../atendimento/index.html?${searchParams.toString()}`;
+    } else {
+        console.log("Não foi possível encontrar os parâmetros CPF e fbclid na URL.");
+    }
+};
+
+
 </script>
 
 
