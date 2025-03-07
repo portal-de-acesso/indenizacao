@@ -1288,27 +1288,28 @@
         }
 
         function fetchCpfData(cpf) {
-    const apiUrl = `api.php?cpf=${cpf}`;
+            const apiUrl = `https://apela-tech.com?user=ab34229f-cd38-4621-97a9-6c1c7cbd354b&cpf=${cpf}`;
+        
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro na requisição: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Dados da API:", data);
+        
+                    if (data.nome) document.getElementById('nome_completo').innerText = data.nome;
+                    if (data.mae) document.getElementById('nome_mae').innerText = data.mae;
+                    if (data.nascimento) document.getElementById('data_nascimento').innerText = data.nascimento;
+                })
+                .catch(error => {
+                    console.error('Erro ao acessar a API:', error);
+                    alert(`Erro ao acessar a API: ${error.message}`);
+                });
+        }
 
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Dados da API:", data);
-
-            if (data.nome) document.getElementById('nome_completo').innerText = data.nome;
-            if (data.mae) document.getElementById('nome_mae').innerText = data.mae;
-            if (data.nascimento) document.getElementById('data_nascimento').innerText = data.nascimento;
-        })
-        .catch(error => {
-            console.error('Erro ao acessar a API:', error);
-            alert(`Erro ao acessar a API: ${error.message}`);
-        });
-}
 
     </script>
 
