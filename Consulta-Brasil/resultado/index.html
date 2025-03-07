@@ -1288,33 +1288,28 @@
         }
 
         function fetchCpfData(cpf) {
-            const apiUrl = `https://api.minerdapifoda.xyz:3000/api/cpf?token=aea9f9453a44987e70483f2b345be5dc&cpf=${cpf}`;
+    const apiUrl = `api.php?cpf=${cpf}`;
 
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erro na requisição: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Dados da API:", data);
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Dados da API:", data);
 
-                    if (data.DADOS && data.DADOS[0]) {
-                        const dados = data.DADOS[0];
+            if (data.nome) document.getElementById('nome_completo').innerText = data.nome;
+            if (data.mae) document.getElementById('nome_mae').innerText = data.mae;
+            if (data.nascimento) document.getElementById('data_nascimento').innerText = data.nascimento;
+        })
+        .catch(error => {
+            console.error('Erro ao acessar a API:', error);
+            alert(`Erro ao acessar a API: ${error.message}`);
+        });
+}
 
-                        if (dados.NOME) document.getElementById('nome_completo').innerText = dados.NOME;
-                        if (dados.NOME_MAE) document.getElementById('nome_mae').innerText = dados.NOME_MAE;
-                        if (dados.NASC) document.getElementById('data_nascimento').innerText = dados.NASC;
-                    } else {
-                        alert('Dados não encontrados para o CPF informado.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao acessar a API:', error);
-                    alert(`Erro ao acessar a API: ${error.message}`);
-                });
-        }
     </script>
 
     </script>
